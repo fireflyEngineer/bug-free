@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders homepage unchanged 1`] = `
+<div
+  className="Header"
+>
+  <img
+    alt="logo"
+    className="Header-Logo"
+    src="/image/logo.png"
+  />
+  <div
+    className="Header-Icons"
+  >
+    <button>
+      Get Started.
+    </button>
+  </div>
+</div>
+`;

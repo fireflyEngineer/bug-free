@@ -1,17 +1,31 @@
-module.exports = {
-  webpack(config, options) {
-    config.module.rules.push({
-      test: /\.graphql$/,
-      exclude: /node_modules/,
-      use: [options.defaultLoaders.babel, { loader: 'graphql-let/loader' }],
-    })
+const withLess = require('@zeit/next-less')
+const withImages = require('next-images')
+const path = require('path')
 
-    config.module.rules.push({
-      test: /\.graphqls$/,
-      exclude: /node_modules/,
-      loader: 'graphql-tag/loader',
-    })
+module.exports = withImages(
+  withLess({
+    webpack(config, options) {
+      config.module.rules.push({
+        test: /\.graphql$/,
+        exclude: /node_modules/,
+        use: [options.defaultLoaders.babel, { loader: 'graphql-let/loader' }]
+      })
 
-    return config
-  },
-}
+      config.module.rules.push({
+        test: /\.graphqls$/,
+        exclude: /node_modules/,
+        use: [
+          { loader: 'graphql-tag/loader' },
+          { loader: 'graphql-let/schema/loader' }
+        ]
+      })
+
+      config.node = {
+        fs: 'empty'
+      }
+
+      return config
+    },
+    poweredByHeader: false
+  })
+)
