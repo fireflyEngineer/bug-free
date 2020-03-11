@@ -1,0 +1,10 @@
+**/*.md
+**/*.svg
+**/*.html
+/build
+/.cache
+/node_modules
+.next
+node_modules
+__generated__
+.serverless

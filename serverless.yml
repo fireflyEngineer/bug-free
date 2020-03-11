@@ -1,0 +1,32 @@
+# serverless.yml
+NextjsFunc:
+  credentials: ~/credentials
+  component: '@serverless/tencent-nextjs'
+  inputs:
+    functionName: nextjs-function
+    region: ap-guangzhou
+    code: ./
+    serviceId: service-70ojlvhm
+    
+    functionConf:
+      timeout: 30
+      memorySize: 128
+    environment:
+      variables:
+        RUN_ENV: test
+
+    apigatewayConf:
+      customDomain:
+        - domain: www.guesses.cn
+          certificateId: baiI9q2A
+          isDefaultMapping: 'FALSE'
+          pathMappingSet:
+            - path: /
+              environment: release
+          protocols:
+            - http
+            - https
+      protocols:
+        - http
+        - https
+      environment: release
